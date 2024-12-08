@@ -1,5 +1,5 @@
 body {
-  background-color: #ddc6ed;
+  background-color: #82c5ff;
   margin: 0;
   font-family: sans-serif;
 }
@@ -7,7 +7,7 @@ body {
 .main {
   height: 100%;
   width: 100%;
-  background-color: #ddc6ed;
+  background-color: #82c5ff;
 }
 
 .title {
@@ -42,7 +42,7 @@ body {
   height: 50px;
   float: left;
   border-radius: 50%;
-  background: #acc6f8;
+  background: #49a4fa;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -65,7 +65,7 @@ body {
 }
 .flex-end {
   align-self: end;
-  background: #8fbc8f;
+  background: #bcffc8;
   border-color: #466546;
 }
 
