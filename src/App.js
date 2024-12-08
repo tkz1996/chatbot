@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import Login from "./components/Login";
+import Chat from "./components/Chat";
 
 function App() {
+  const [userName, setUserName] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://react-fe-s3.s3-website-ap-southeast-1.amazonaws.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          S3 Link
-        </a>
-      </header>
+    <div className="main" id="wrapper">
+      {userName ? (
+        <Chat userName={userName} />
+      ) : (
+        <Login setUserName={setUserName} />
+      )}
     </div>
   );
 }

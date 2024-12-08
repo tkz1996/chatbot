@@ -6,8 +6,10 @@
     "cra-template": "1.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-scripts": "5.0.1"
+    "react-scripts": "^5.0.1",
+    "websocket": "^1.0.35"
   },
+  "proxy": "http://ec2-54-169-158-2.ap-southeast-1.compute.amazonaws.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
