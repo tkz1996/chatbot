@@ -32,7 +32,9 @@ body {
 }
 .message {
   border-radius: 10px;
-  width: 300px;
+  min-width: 300px;
+  max-width: 70%;
+  width: auto;
   margin: 10px;
   padding: 20px 20px 10px;
   border: 1px solid;
@@ -70,7 +72,17 @@ body {
 }
 
 .form {
+  align-self: center;
   display: flex;
+  padding: 1%;
+  width: 50%;
+  margin: 0px auto;
+}
+.form section{
+  position: relative;
+  display: flex;
+  padding: 1%;
+  width: 50%;
 }
 input {
   border-radius: 10px;
@@ -90,4 +102,10 @@ button {
   cursor: pointer;
   border-radius: 10px;
   font-family: sans-serif;
+}
+
+#wrapper {
+  padding-top: 10%;
+  margin: 0px auto;
+  width: 100%;
 }

@@ -9,7 +9,6 @@
     "react-scripts": "^5.0.1",
     "websocket": "^1.0.35"
   },
-  "proxy": "http://ec2-54-169-158-2.ap-southeast-1.compute.amazonaws.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
