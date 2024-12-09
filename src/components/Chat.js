@@ -5,7 +5,7 @@ const client = new Socket("ws://54.169.158.2:80");
 const ec2Uri = "http://ec2-54-169-158-2.ap-southeast-1.compute.amazonaws.com";
 
 const Chat = ({ userName }) => {
-  const [username, setUsername] = useState(userName);
+  const [username] = useState(userName);
   const [myMessage, setMyMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
@@ -20,28 +20,27 @@ const Chat = ({ userName }) => {
     setMyMessage("");
   };
 
-  const setChatHistory = (async function() {
-    const response = await fetch(ec2Uri + '/chat/history', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        "username": username
-      })
-    });
-    const data = await response.json();
-    for (let key in data) {
-      setMessages((messages) => [
-        ...messages,
-        {
-          message: data[key].message,
-          userName: data[key].userName,
-        },
-      ]);
-    }
-  });
-
   // useEffect for inital render for given username
   useEffect(() => {
+    const setChatHistory = (async function () {
+      const response = await fetch(ec2Uri + '/chat/history', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          "username": username
+        })
+      });
+      const data = await response.json();
+      for (let key in data) {
+        setMessages((messages) => [
+          ...messages,
+          {
+            message: data[key].message,
+            userName: data[key].userName,
+          },
+        ]);
+      }
+    });
     setChatHistory();
   }, [username]);
 
