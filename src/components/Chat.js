@@ -1,5 +1,5 @@
 import { w3cwebsocket as Socket } from "websocket";
-import { useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const client = new Socket("ws://54.169.158.2:80");
 const ec2Uri = "http://ec2-54-169-158-2.ap-southeast-1.compute.amazonaws.com";
@@ -13,6 +13,8 @@ const Chat = ({ userName }) => {
   const [myMessage, setMyMessage] = useState("");
   // all messages so far in chat history
   const [messages, setMessages] = useState([]);
+  // focus reference to move window on state change
+  const msgRef = useRef([])
 
   // send message and set current chat message bar to empty
   const onSend = () => {
@@ -25,6 +27,11 @@ const Chat = ({ userName }) => {
     );
     setMyMessage("");
   };
+
+  useEffect(() => {
+    let size = msgRef.current.length;
+    msgRef.current[size-1]?.focus();
+  },[messages])
 
   // useEffect for inital chat history rendering for given username
   useEffect(() => {
@@ -76,6 +83,8 @@ const Chat = ({ userName }) => {
       <div className="messages">
         {messages.map((message, key) => (
           <div
+            ref={(curr) => (msgRef.current = [...msgRef.current, curr])}
+            tabIndex="1"
             key={key}
             className={`message ${userName === message.userName ? "flex-end" : "flex-start"
               }`}
