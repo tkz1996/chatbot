@@ -96,6 +96,7 @@ input {
 }
 
 button {
+  margin: 5px;
   border-radius: 10px;
   font-size: 20px;
   background-color: indigo;
@@ -110,4 +111,18 @@ button {
 #wrapper {
   margin: 0px auto;
   width: 100%;
+}
+
+.errorBox {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  width: 30%;
+  border-radius: 10px;
+  font-size: 20px;
+  background-color: rgb(245, 53, 53);
+  color: #fff;
+  padding: 10px 30%;
+  border-radius: 10px;
+  font-family: sans-serif;
 }
