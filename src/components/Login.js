@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const Login = ({ setUserName }) => {
+  // login state to track username
   const [login, setLogin] = useState("");
 
   return (

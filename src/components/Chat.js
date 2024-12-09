@@ -5,10 +5,14 @@ const client = new Socket("ws://54.169.158.2:80");
 const ec2Uri = "http://ec2-54-169-158-2.ap-southeast-1.compute.amazonaws.com";
 
 const Chat = ({ userName }) => {
+  // defining states that will be used in the client
   const [username] = useState(userName);
+  // message from user to be sent to BE
   const [myMessage, setMyMessage] = useState("");
+  // all messages so far in chat history
   const [messages, setMessages] = useState([]);
 
+  // send message and set current chat message bar to empty
   const onSend = () => {
     client.send(
       JSON.stringify({
@@ -20,7 +24,7 @@ const Chat = ({ userName }) => {
     setMyMessage("");
   };
 
-  // useEffect for inital render for given username
+  // useEffect for inital chat history rendering for given username
   useEffect(() => {
     const setChatHistory = (async function () {
       const response = await fetch(ec2Uri + '/chat/history', {
@@ -44,7 +48,7 @@ const Chat = ({ userName }) => {
     setChatHistory();
   }, [username]);
 
-  // useEffect for triggering message update
+  // useEffect for triggering message update upon websocket message
   useEffect(() => {
     client.onopen = () => {
       console.log("WebSocket Client Connected");
