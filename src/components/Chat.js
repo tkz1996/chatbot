@@ -29,6 +29,7 @@ const Chat = ({ userName }) => {
   // useEffect for inital chat history rendering for given username
   useEffect(() => {
     const setChatHistory = (async function () {
+      // fetch chat history
       const response = await fetch(ec2Uri + '/chat/history', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
@@ -37,6 +38,7 @@ const Chat = ({ userName }) => {
         })
       });
       const data = await response.json();
+      // append new message for each item in data array
       for (let key in data) {
         setMessages((messages) => [
           ...messages,
@@ -55,6 +57,7 @@ const Chat = ({ userName }) => {
     client.onopen = () => {
       console.log("WebSocket Client Connected");
     };
+    // add message to messages array from websocket
     client.onmessage = (message) => {
       const data = JSON.parse(message.data);
       setMessages((messages) => [

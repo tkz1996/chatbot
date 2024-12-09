@@ -5,13 +5,15 @@ const ec2Uri = "http://ec2-54-169-158-2.ap-southeast-1.compute.amazonaws.com";
 
 
 const Login = ({ setUserName }) => {
-  // login states to track user and password
+  // login states to track user, password and errors
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  // validate the credentials of user
   const validateCreds = (async function () {
     setErrorMessage("Loading...");
+    // call login api
     const response = await fetch(ec2Uri + '/profile/login', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
@@ -20,6 +22,7 @@ const Login = ({ setUserName }) => {
         "password": password
       })
     });
+    // handle response from BE and display error if needed
     const data = await response.json();
     if (!response.ok) {
       setErrorMessage(data.errorMessage);
@@ -28,8 +31,10 @@ const Login = ({ setUserName }) => {
     setUserName(user);
   });
 
+  // create new account for user
   const createAcc = (async function () {
     setErrorMessage("Loading...");
+    // call create api
     const response = await fetch(ec2Uri + '/profile/create', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
@@ -38,6 +43,7 @@ const Login = ({ setUserName }) => {
         "password": password
       })
     });
+    // handle response from BE and display error if needed
     const data = await response.json();
     if (!response.ok) {
       setErrorMessage(data.errorMessage);
