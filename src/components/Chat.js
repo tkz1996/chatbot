@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 const client = new Socket("ws://54.169.158.2:80");
 const ec2Uri = "http://ec2-54-169-158-2.ap-southeast-1.compute.amazonaws.com";
+// const client = new Socket("ws://localhost:80");
 // const ec2Uri = "http://localhost";
 
 const Chat = ({ userName }) => {
